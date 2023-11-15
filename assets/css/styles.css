@@ -1,0 +1,554 @@
+/* DM Serif Display */
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap');
+
+/*-------------------------------------------------------------------------General */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    font-family: 'DM Serif Display', serif;
+    font-weight: normal;
+}
+
+body,
+p {
+    padding: 0;
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+ul {
+    list-style-type: none;
+}
+
+.calculator__tips {
+    opacity: 0;
+    animation: fade-in-right cubic-bezier(.39, .01, .5, 1) 0.4s forwards;
+    animation-delay: 0.4s;
+}
+
+.calculator__history {
+    overflow: auto;
+    opacity: 0;
+    animation: fade-in-left cubic-bezier(.39, .01, .5, 1) 0.4s forwards;
+    animation-delay: 0.4s;
+}
+
+.history-table {
+    text-align: left;
+    word-wrap: break-word;
+}
+
+.history-table tr {
+    padding: 1em;
+}
+
+.delete-button {
+    margin: .5em 3em 0 0.3em;
+    width: 2em;
+    height: 2em;
+    background-color: #111111;
+    border: 1px solid #111111;
+    border-radius: 5px;
+    color: #fafafa;
+    text-align: center;
+}
+
+.delete-button:hover {
+    background-color: #ef4143;
+    border: 1px solid #ef4143;
+}
+
+/*-------------------------------------------------------------------------Backgrounds */
+.premium__background {
+    background-image: radial-gradient(ellipse at top, #ea6e3d, transparent),
+    radial-gradient(ellipse at bottom, #1d98d3, transparent);
+    background-repeat: no-repeat;
+    height: 100vh;
+}
+
+.mlp__background {
+    background-image: linear-gradient(350deg, #662d8b, #9cdbfa);
+    background-repeat: no-repeat;
+    height: 100vh;
+}
+
+.grungegoth__background {
+    position: relative;
+    background-image: radial-gradient(circle 800px at center center, #ef4144af 0, #111111);
+    background-repeat: no-repeat;
+    height: 100vh;    
+}
+
+.halloween__background {
+    position: relative;
+    background-image: linear-gradient(350deg, #111111, #272727);
+    background-repeat: no-repeat;
+    height: 100vh;
+}
+
+.halloween__bg {
+    position: absolute;
+    left: 9%;
+    top: 17%;
+    width: 500px;
+    z-index: -1;
+}
+
+.halloween__bg2 {
+    position: absolute;
+    right: 9%;
+    top: 17%;
+    width: 500px;
+    transform: scale(-1, 1);
+    z-index: -1;
+}
+
+.grungegoth__bg {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 70em;
+    z-index: -1;
+    height: 90vh;
+}
+
+/*-------------------------------------------------------------------------Footer */
+.footer {
+    min-height: 5em;
+    min-width: 710px;
+    background-color: #111111;
+    color: white;
+    border-radius: 5px;
+    margin-top: 5em;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    animation: fade-in-bottom cubic-bezier(.39, .01, .5, 1) 0.4s forwards;
+    animation-delay: 0.2s;
+}
+
+.footer__mlp {
+    background-color: #9cdbfa;
+}
+
+.footer__halloween {
+    background-color: #ef4143;
+}
+
+.nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 2em;
+    margin: auto 0;
+}
+
+.nav {
+    padding: 0;
+}
+
+.mute-btn {
+    background: none;
+    color: white;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit
+}
+
+.nav__mlp a {
+    color: #1d98d3;
+    border: none;
+}
+
+.active--mlp a {
+    color: #fafafa;
+}
+
+.nav__prem a,
+.nav__halloween a {
+    color: #fafafa;
+    border: none;
+}
+
+.active--index a {
+    color: #ea6e3d;
+}
+
+.active--grungegoth a {
+    color: #ef4143;
+}
+
+.active--halloween a {
+    color: #111111;
+}
+
+.footer .nav__prem--active {
+    color: #ea6e3d;
+}
+
+p a {
+    color: #fafafa;
+}
+
+/*-------------------------------------------------------------------------Mute switch */
+.mute-switch {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 70px;
+    height: 30px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #fafafa;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.slider--index:before,
+.slider--prem:before,
+.slider--grungegoth:before,
+.slider--halloween:before {
+    position: absolute;
+    content: "";
+    height: 22px;
+    width: 22px;
+    left: 4px;
+    bottom: 4px;
+    background-color: #111111;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.slider--mlp:before {
+    position: absolute;
+    content: "";
+    height: 22px;
+    width: 22px;
+    left: 4px;
+    bottom: 4px;
+    background-color: #1d98d3;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+input:checked+.slider {
+    background-color: #ea6e3d;
+}
+
+input:checked+.slider--mlp,
+input:checked+.slider--grungegoth,
+input:checked+.slider--halloween {
+    background-color: #ef4143;
+}
+
+input:focus+.slider {
+    box-shadow: none;
+}
+
+input:checked+.slider:before {
+    -webkit-transform: translateX(40px);
+    -ms-transform: translateX(40px);
+    transform: translateX(40px);
+}
+
+/* Rounded sliders */
+.slider.round {
+    border-radius: 30px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+/*-------------------------------------------------------------------------Calculator */
+.calculator {
+    margin-top: 6.5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.calculator__sections {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 75px;
+}
+
+
+.calculator__wrapper {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    animation: fade-in-bottom cubic-bezier(.39, .01, .5, 1) 0.4s forwards;
+}
+
+.calculator__history,
+.calculator__tips {
+    height: 538px;
+    width: 300px;
+    background-color: #fafafa;
+    border-radius: 5px;
+    padding: 12px;
+    box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.3);
+}
+
+.calculator__history h3,
+.calculator__tips h3 {
+    text-align: center;
+    margin-bottom: 1em;
+}
+
+.calculator__tips a {
+    color: #ea6e3d;
+}
+
+.calculator__tips a:hover {
+    color: #1d98d3;
+}
+
+
+/*-------------------------------------------------------------------------Calculator output*/
+
+.output {
+    position: absolute;
+    /* background-color: #ea6e3d; */
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+    width: 690px;
+    height: 20%;
+    top: 8%;
+    left: 52px;
+    padding: .8em;
+    word-wrap: break-word;
+    word-break: break-all;
+    z-index: 2;
+}
+
+.output .previous-operand {
+    width: 100%;
+    color: rgba(255, 255, 255, .75);
+    font-size: 1.8em;
+    line-height: 0.8em;
+    z-index: 3;
+    text-align: end;
+}
+
+.output .current-operand {
+    width: 100%;
+    color: white;
+    font-size: 3em;
+    line-height: 0.8em;
+    z-index: 4;
+    text-align: end;
+}
+
+.calculator__img {
+    position: relative;
+    width: 800px;
+    box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.3);
+}
+
+.calculator-image-halloween {
+    border: #111111 solid 3px;
+    /* box-shadow: 0 0 30px 0 rgba(250, 250, 250, 0.3); */
+}
+
+.cover-up-1 {
+    position: absolute;
+    height: 30px;
+    width: 30px;
+    left: 10%;
+    bottom: 11%;
+    background-color: #2f2f2f;
+}
+
+.cover-up-2 {
+    position: absolute;
+    height: 30px;
+    width: 30px;
+    left: 23%;
+    bottom: 11%;
+    background-color: #2f2f2f;
+}
+
+.cover-up-1--mlp,
+.cover-up-2--mlp {
+    background-color: #1e98d3;
+}
+
+.cover-up-1--halloween,
+.cover-up-2--halloween {
+    background-color: #c94f51;
+}
+
+/*-------------------------------------------------------------------------logo svg */
+.logo {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5em;
+    opacity: 0;
+    animation: fade-in-scale cubic-bezier(.39, .01, .5, 1) 0.4s forwards;
+    animation-delay: 0.4s;
+}
+
+.logo__index,
+.logo__mlp {
+    width: 6.5em;
+}
+
+.logo__grungegoth,
+.logo__halloween {
+    height: 51px;
+}
+
+area {
+    cursor: pointer;
+}
+
+img[usemap] {
+    position: relative;
+}
+
+/*-------------------------------------------------------------------------Animation */
+
+@keyframes fade-in-bottom {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fade-in-left {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fade-in-right {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fade-in-scale {
+    from {
+        opacity: 0;
+        transform: scaleX(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: scaleX(1);
+    }
+}
+
+/*-------------------------------------------------------------------------signup form */
+
+.sign-up-form {
+    margin-top: 6.5em;
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border: #1d1d1d solid 2px;
+    border-radius: 5px;
+}
+
+.signup-bg {
+    background-image: linear-gradient(350deg, #111111, #fafafa);
+    height: 100%;
+    width: 100%;
+}
+
+.sign-up-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.form-text {
+    color: #111111;
+}
+
+.premium-info {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+    color: #fafafa;
+    text-shadow: 2px 2px 4px #000000;
+}
+
+.footer-signup {
+    
+        min-height: 5em;
+        max-width: 710px;
+        background-color: #111111;
+        color: white;
+        border-radius: 5px;
+        margin-top: 5em;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.3);
+        opacity: 0;
+        animation: fade-in-bottom cubic-bezier(.39,.01,.5,1) 0.4s forwards;
+        animation-delay: 0.2s;
+    
+}
